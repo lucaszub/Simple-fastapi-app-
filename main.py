@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 import uvicorn
+from get_weather_data import get_weather_by_city 
+
 
 app = FastAPI()
 
@@ -9,5 +11,6 @@ def read_root():
 
 
 @app.get("/wether_data")
-def get_weather_data():
-    return { "Nantes" : "24°"}
+def get_weather_data(city):
+    weather_by_city = get_weather_by_city(city)
+    return { "Température pour votre ville" : weather_by_city}
